@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DKWIN</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png">
+    <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="/assets/site.webmanifest">
+</head>
+
+<body>
+    <header x-data="{ open: false }" class="bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-xl font-bold">
+                        <img src="/assets/logo.png" alt="Logo" width="120" class="inline-block mr-2">
+                    </a>
+                </div>
+
+                <!-- Desktop Links -->
+                <nav class="hidden md:flex space-x-6 text-white text-sm items-center">
+                    <a href="/" class="hover:text-yellow-400 font-medium transition active">Home</a>
+                    <a href="/rewards" class="hover:text-yellow-400 font-medium transition">Rewards</a>
+                    <a href="/privacy-policy" class="hover:text-yellow-400 font-medium transition">Privacy Policy</a>
+                    <a href="/terms-and-conditions" class="hover:text-yellow-400 font-medium transition">Terms &
+                        Conditions</a>
+                    <a href="/disclaimer" class="hover:text-yellow-400 font-medium transition">Disclaimer</a>
+                    <a href="/contact-us" class="hover:text-yellow-400 font-medium transition">Contact Us</a>
+                    <div class="relative">
+                        <button type="button"
+                            class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-2 py-1.5 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            id="language-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="flex items-center">
+                                <img src="https://flagcdn.com/w20/us.png" alt="English" class="h-4 w-4 mr-2">
+                                English
+                            </span>
+                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                            role="menu" aria-orientation="vertical" aria-labelledby="language-menu-button" tabindex="-1"
+                            id="language-menu">
+                            <div class="py-1" role="none">
+                                <!-- English -->
+                                <a href="/"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    role="menuitem">
+                                    <img src="https://flagcdn.com/w20/us.png" alt="English" class="h-4 w-4 mr-2">
+                                    English
+                                </a>
+
+                                <a href="/bn"
+                                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    role="menuitem">
+                                    <img src="https://flagcdn.com/w20/bd.png" alt="Bangladesh" class="h-4 w-4 mr-2">
+                                    Bangla
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-gray-300 focus:outline-none">
+                        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="open" x-transition class="md:hidden bg-gray-700">
+            <nav class="px-4 pt-2 pb-4 space-y-2">
+                <a href="/" class="block px-2 py-2 rounded hover:bg-gray-600">Home</a>
+                <a href="/rewards" class="block px-2 py-2 rounded hover:bg-gray-600">Rewards</a>
+                <a href="/privacy-policy" class="block px-2 py-2 rounded hover:bg-gray-600">Privacy Policy</a>
+                <a href="/terms-and-conditions" class="block px-2 py-2 rounded hover:bg-gray-600">Terms and
+                    Conditions</a>
+                <a href="/disclaimer" class="block px-2 py-2 rounded hover:bg-gray-600">Disclaimer</a>
+                <a href="/contact-us" class="block px-2 py-2 rounded hover:bg-gray-600">Contact us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-banner bg-linear-to-r from-yellow-600 to-yellow-500 text-white py-12">
+            <div class="grid grid-cols-1 md:grid-cols-10 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="col-span-1 md:col-span-6 my-auto">
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-wider leading-14 mb-4">
+                        Play Wingo on DKWIN –<br> Win Rewards, Invite & Earn!</h1>
+                    <p class="text-xl font-medium text-white">Join the popular color prediction game and earn referral
+                        bonuses. Simple, fun, and rewarding for players in Bangladesh!</p>
+                    <div class="space-x-4">
+                        <button class="button-71 mt-5" role="button">Register Here <i
+                                class="ms-2 fa-solid fa-user-plus"></i></button>
+                    </div>
+                </div>
+                <div class="col-span-1 md:col-span-4 md:px-6">
+                    <img src="/assets/2.png" alt="Hero Image" class="mx-auto mb-8 sm:w-1/2 xl:w-3/4" width="100%">
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto my-12 px-3">
+            <div class="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+                <div class="sm:col-span-2 md:col-span-3 lg:col-span-4 text-center text-center mx-auto">
+                    <img src="./assets/dkwin-poster.webp" width="100%" alt="dkwin poster"
+                        class="rounded-lg shadow-lg lg:w-[200px]">
+                </div>
+                <div class=" sm:col-span-4 md:col-span-5 lg:col-span-8 my-auto">
+                    <p class="md:text-xl">Welcome to <strong>DK Win</strong>, home of non‐stop excitement and instant
+                        wins. Discover <strong>Wingo</strong>, our flagship game that delivers new draws every minute,
+                        and explore adrenaline-fueling challenges like the <strong>Aviator Game</strong>. Ready to turn
+                        predictions into payouts? <strong>Dk Win register</strong> now and join thousands of winners.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-400">
+
+        <section class="max-w-7xl mx-auto my-12 px-3">
+            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">WHAT IS DK WIN?</h2>
+            <p><strong>DK Win</strong> is a cutting-edge gaming platform that combines fast-paced draws with secure,
+                provably fair mechanics. Whether you’re a numbers strategist or a thrill-seeker chasing multiplicative
+                climbs, DK Win unites everyone under one digital roof. Our flagship offerings include:</p>
+            <ul class="list-disc pl-5 my-3 space-y-1.5">
+                <li><strong>Wingo game:</strong> A lightning-fast number and colour prediction game with draws every 60
+                    seconds.</li>
+                <li><strong>Aviator Game:</strong> A real-time multiplier challenge that tests your nerve and timing.
+                </li>
+            </ul>
+            <p class="mb-4">Every game on DK Win is designed for maximum engagement: live animations, real-time
+                statistics, and instant payouts keep you hooked from the first click.</p>
+            <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-4">DISCOVER WINGO AT DK WIN</h3>
+            <p>Wingo lives at the heart of DK Win, offering a seamless mix of simplicity and strategy. Players make a
+                quick forecast—selecting numbers or colours—and wait for the draw that happens every minute. Key aspects
+                of Wingo game include:</p>
+            <ul class="list-disc pl-5 my-3 space-y-1.5">
+                <li><strong>1-Minute Draws:</strong> With wingo 1min rounds, the action never stops. Each draw lasts
+                    just 60 seconds, so you
+                    can play dozens of times per hour.</li>
+                <li><strong>Colour Predictions:</strong> Try your hand at wingo colour prediction: pick Red, Green, or
+                    Blue segments for
+                    varied payout multipliers.</li>
+                <li><strong>Live Prediction Tools:</strong> Use our wingo live prediction interface to view trending
+                    numbers, frequency charts, and probability cues in real time.</li>
+                <li><strong>Strategic Hacks:</strong> Implement the wingo 1 minute prediction hack by combining hot/cold
+                    analyses with quick
+                    instincts.</li>
+                <li><strong>Lottery-Style Jackpots:</strong> Bet small amounts and compete in the wingo lottery for a
+                    shot at progressive
+                    jackpots that grow with every round.</li>
+            </ul>
+            <p>Wingo’s immersive experience is designed to appeal both to beginners—who appreciate the straightforward
+                number-picking—and to veterans seeking advanced strategies in <strong>wingo prediction</strong>.</p>
+        </section>
+
+        <section class="max-w-7xl mx-auto my-12 px-3">
+            <div class="grid grid-cols-1 md:grid-cols-6 xl:grid-cols-10 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                <div class="col-span-1 md:col-span-2 xl:col-span-4">
+                    <img src="/assets/wingo_banner.png" alt="Wingo Game"
+                        class="rounded-lg shadow-lg sm:w-2/4 md:w-full mx-auto w-full">
+                </div>
+                <div class="col-span-1 md:col-span-4 xl:col-span-6 my-auto">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">WHY WINGO STANDS OUT</h2>
+                    <ul class="list-decimal pl-5 my-3 space-y-1.5">
+                        <li>
+                            <strong>Rapid-Fire Rounds (wingo 1 minute)</strong>
+                            <ol class="list-disc space-y-1 pl-3">
+                                <li>Bet, wait 60 seconds, and see instant results. No long waiting periods—just
+                                    continuous thrill.</li>
+                                <li>The wingo 1min model enables you to iterate betting strategies quickly.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Multiple Bet Types</strong>
+                            <ol class="list-disc space-y-1 pl-3">
+                                <li>Number Bets: Choose 1–3 numbers (0–9). Correct picks yield high multipliers.</li>
+                                <li>Colour Bets: Predict which colour segment appears next with wingo colour prediction.
+                                    Red yields 2×, Green 3×, Blue 5× (odds based on frequency).</li>
+                                <li>Side Bets: Try “Odd/Even,” “High/Low,” or “Last Digit.” Even if your main number
+                                    misses, side bets can still payout.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Provably Fair Software</strong>
+                            <ol class="list-disc space-y-1 pl-3">
+                                <li>Each draw uses a verifiable random number generator. After the draw, you can confirm
+                                    the seed and hash to ensure 100 % transparency.</li>
+                                <li>There’s zero room for manipulation—ever.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Live Stats & Trends (wingo live prediction)</strong>
+                            <ol class="list-disc space-y-1 pl-3">
+                                <li>Real-time charts display the last 50 draw outcomes, highlighting hot and cold
+                                    numbers.</li>
+                                <li>View probability indicators that show which numbers are due—but remember, every draw
+                                    is independent.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Community Leaderboards</strong>
+                            <ol class="list-disc space-y-1 pl-3">
+                                <li>Climb the daily and weekly Wingo game leaderboards by racking up correct
+                                    predictions. Top scorers earn cashback, free spins, and VIP perks.</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <p>With these features combined, Wingo becomes more than a game of chance—it transforms into a
+                        strategic playground where skill meets speed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto my-12 pt-6 px-3">
+            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 text-center">HOW WINGO WORKS</h2>
+            <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 my-3 space-y-1.5">
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">1. Register & Verify</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>Click Dk Win register or go directly to wingo register.</li>
+                        <li>Provide email, password, username, and country of residence.</li>
+                        <li>Verify via code sent to your inbox or SMS to unlock full account privileges.</li>
+                    </ul>
+                </li>
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">2. Deposit Funds</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>Choose from UPI, Paytm, NetBanking, Visa/MasterCard, or crypto (Bitcoin, Ethereum).</li>
+                        <li>Use promo code “WELCOME50” on your first deposit to receive a 100 % match bonus (up to
+                            ₹5,000).</li>
+                    </ul>
+                </li>
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">3. Enter the Wingo Lobby</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>From the DK Win dashboard, select Wingo game. The lobby displays:</li>
+                        <li>Countdown timer (time until next draw).</li>
+                        <li>Hot/Cold number lists (powered by wingo live prediction).</li>
+                        <li>Betting panel with number and colour options.</li>
+                    </ul>
+                </li>
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">4. Place Your Bets</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>Pick one or more numbers between 0–9.</li>
+                        <li>Optionally, choose a colour segment: Red , Green , or Blue</li>
+                        <li>Set your stake (minimum ₹10, maximum ₹10,000 per draw).</li>
+                        <li>Set your stake (minimum ₹10, maximum ₹10,000 per draw).</li>
+                    </ul>
+                </li>
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">5. Watch the Draw</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>The animated wheel spins for 10 seconds, then stops on the winning number and colour.</li>
+                        <li>Winners are instantly credited; non-winners receive an on-screen notification.</li>
+                    </ul>
+                </li>
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="text-lg sm:text-xl md:text-2xl mb-2 font-medium">6. Collect Winnings or Reinvest</h4>
+                    <ul class="list-disc space-y-1 pl-3">
+                        <li>Winnings (including jackpot portions) are auto-credited to your “Balance.”</li>
+                        <li>Use your funds for subsequent wingo 1 minute rounds, transfer to the Aviator Game, or
+                            withdraw to your wallet.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>Because draws happen every 60 seconds, you can place dozens of bets in a short session—perfect for
+                players who thrive on rapid-fire action.</p>
+        </section>
+
+        <section class="max-w-7xl mx-auto my-12 px-3">
+            <div class="grid grid-cols-1 md:grid-cols-6 xl:grid-cols-10 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                <div class="col-span-1 md:col-span-4 xl:col-span-6 my-auto">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">AVIATOR GAME: TAKE FLIGHT
+                        FOR BIGGAINS</h2>
+                    <p>While Wingo tests your prediction acumen, the Aviator Game challenges your timing and risk
+                        tolerance. Here’s what makes Aviator equally compelling:</p>
+                    <ul class="list-disc pl-5 my-3 space-y-1.5">
+                        <li><strong>High Stakes, Simple Rules:</strong>Bet, watch, and cash out before the crash. Exit
+                            early for a safe payout—or risk it for bigger rewards.</li>
+                        <li><strong>Provably Fair: </strong>Transparent hashes and seeds make every round verifiable.
+                            Check past rounds in the Crash List to plan smarter.</li>
+                        <li><strong>Leaderboard & Tournaments: </strong>Earn Flight Points with every bet. Top players
+                            win up to ₹2,00,000 weekly. Special High Flyers events offer VIP perks and prizes.</li>
+                        <li><strong>Wingo Integration: </strong>Use Wingo winnings in Aviator. Play 50 Wingo rounds for
+                            5 free Aviator spins. Win Blue in Wingo and get a 2× Aviator voucher!</li>
+                        <li><strong>DKWIN brings nonstop action: </strong>fast Wingo draws + rising Aviator multipliers
+                            = endless thrills.</li>
+                    </ul>
+                </div>
+                <div class="col-span-1 md:col-span-2 xl:col-span-4">
+                    <img src="/assets/aviator-banner.png" alt="Wingo Game"
+                        class="rounded-lg shadow-lg sm:w-2/4 md:w-full mx-auto w-full">
+                </div>
+            </div>
+        </section>
+
+        <section class="text-gray-900 py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">🎤 USER TESTIMONIALS</h2>
+
+                <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <!-- Testimonial 1 -->
+                    <div
+                        class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200">
+                        <p class="text-base italic text-gray-700">“I thought Wingo would be just another time-killer. But
+                            thanks to the 1-minute draws, I turned ₹500 into ₹15,000 in a single evening. DK Win’s
+                            provably fair system gave me full confidence that it was all luck and strategy, not rigged!”
+                        </p>
+                        <p class="mt-4 text-blue-600 font-semibold">— Arjun S., Dhaka</p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div
+                        class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200">
+                        <p class="text-base italic text-gray-700">“The Aviator Game is insane—one moment you’re calm, the
+                            next scrambling to cash out at 10×. Combined with Wingo’s colour predictions, I split my
+                            funds and kept my balance consistent. Love this platform!”</p>
+                        <p class="mt-4 text-blue-600 font-semibold">— Aqib K., Chattogram</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div
+                        class="bg-gray-100 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200">
+                        <p class="text-base italic text-gray-700">“I signed up using the Wingo register link and got my
+                            welcome bonus instantly. Playing Wingo every minute makes my commute so much more
+                            entertaining. Cashouts to Paytm are literally instant.”</p>
+                        <p class="mt-4 text-blue-600 font-semibold">— Rahul T., Dhaka</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">© 2025 DKWIN. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="/privacy-policy" class="text-sm hover:text-yellow-400">Privacy Policy</a>
+                    <a href="/terms-and-conditions" class="text-sm hover:text-yellow-400">Terms & Conditions</a>
+                    <a href="/disclaimer" class="text-sm hover:text-yellow-400">Disclaimer</a>
+                    <a href="/contact-us" class="text-sm hover:text-yellow-400">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="/assets/script.js"></script>
+</body>
+
+</html>
