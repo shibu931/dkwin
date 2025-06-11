@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /login/
+Disallow: /register/
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+Allow: /
+
+# Sitemap
+Sitemap: https://www.dkwin.wiki/sitemap.xml
